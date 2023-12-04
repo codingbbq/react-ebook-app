@@ -3,6 +3,7 @@ import { ProductCard } from "../../components";
 import {Loader} from "../../components";
 import FilterBar from "./components/FilterBar";
 import { useEffect, useState } from "react";
+import { useTitle } from "../../hooks/useTitle";
 
 const ProductsList = () => {
 	const [show, setShow] = useState(false);
@@ -11,6 +12,8 @@ const ProductsList = () => {
 
 	const search = useLocation().search;
 	const searchTerm = new URLSearchParams(search).get("q") || "";
+
+	useTitle("Explore EBooks");
 
 	useEffect(() => {
 		const fetchProducts = async () => {
