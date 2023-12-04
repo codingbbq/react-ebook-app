@@ -5,3 +5,4 @@ export { ProductCard } from "./Elements/ProductCard";
 export { Rating } from "./Elements/Rating";
 
 export { Loader } from "./Others/Loader";
+export { ScrollToTop } from "./Others/ScrollToTop";
