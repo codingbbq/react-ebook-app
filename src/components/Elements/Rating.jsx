@@ -5,8 +5,8 @@ const Rating = ({rating}) => {
     }
 	return (
 		<>
-            {ratingArr.map((rating) => (
-                <i className={`text-lg bi text-yellow-500 mr-1 ${rating ? 'bi-star-fill' : 'bi-star'}`}></i>
+            {ratingArr.map((rating, index) => (
+                <i key={index} className={`text-lg bi text-yellow-500 mr-1 ${rating ? 'bi-star-fill' : 'bi-star'}`}></i>
             ))}
 		</>
 	);
