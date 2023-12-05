@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Search } from "../Sections/Search";
+import { DropdownLoggedIn, DropdownLoggedOut} from "../index";
 
 const Header = () => {
+	const token = sessionStorage.getItem("token");
 	const [darkMode, setDarkMode] = useState(JSON.parse(localStorage.getItem("darkMode")) || false);
+	const [dropdown, setDropdown] = useState(false);
+
 	const [searchSection, setSearchSection] = useState(false);
 	useEffect(() => {
 		localStorage.setItem("darkMode", JSON.stringify(darkMode));
@@ -28,7 +32,7 @@ const Header = () => {
 								React EBook App
 							</span>
 						</Link>
-						<div className="flex items-center">
+						<div className="flex items-center relative">
 							<span onClick={() => setDarkMode(!darkMode)} className="cursor-pointer text-xl text-gray-700 dark:text-white mr-5 bi bi-gear-wide-connected"></span>
 							<span onClick={() => setSearchSection(!searchSection)} className="cursor-pointer text-xl text-gray-700 dark:text-white mr-5 bi bi-search"></span>
 							<Link
@@ -41,7 +45,8 @@ const Header = () => {
 									</span>
 								</span>
 							</Link>
-							<span className="cursor-pointer text-xl text-gray-700 dark:text-white mr-5 bi bi-person-circle"></span>
+							<span onClick={() => setDropdown(!dropdown)} className="cursor-pointer text-xl text-gray-700 dark:text-white mr-5 bi bi-person-circle"></span>
+							{ dropdown && (token ? <DropdownLoggedIn setDropdown={setDropdown} /> : <DropdownLoggedOut setDropdown={setDropdown} />)}
 						</div>
 					</div>
 				</nav>
