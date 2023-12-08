@@ -1,12 +1,13 @@
+import { useCart } from "../../context";
 import { CartEmpty } from "./components/CartEmpty";
 import { CartList } from "./components/CartList";
 
 export const CartPage = () => {
-    const cartListLength = 2;
+    const { cartList } = useCart();
     return (
         <>
             <main>
-            { cartListLength === 0 ? <CartEmpty /> : <CartList /> }
+            { cartList.length === 0 ? <CartEmpty /> : <CartList /> }
             </main>
         </>
     )

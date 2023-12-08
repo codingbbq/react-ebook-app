@@ -244,6 +244,12 @@
       "password": "$2a$10$oHR5La3Ahs675Wg.iQrKxOlnEneeLLDsCzSTXjeEqaBk6jTpq.iWO",
       "name": "john doe",
       "id": 1
+    },
+    {
+      "email": "alex@gmail.com",
+      "password": "$2a$10$g22xEBDkn1DMPZn25F6YkO5AYIz4q5tk1RbwEX.G4A8tH07XmXG9q",
+      "name": "Alex T",
+      "id": 2
     }
   ]
 }
