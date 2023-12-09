@@ -1,29 +1,33 @@
 import { useEffect, useState } from "react";
 import { useCart } from "../../../context";
+import { useNavigate } from "react-router-dom";
+import { createOrderService, getUserService } from "../../../service";
 
 export const Checkout = ({ setCheckout }) => {
-	const { total } = useCart();
+	const navigate = useNavigate();
+
+	const { cartList, total, clearCart } = useCart();
 	const [user, setUser] = useState({});
 
 	useEffect(() => {
-		const token = JSON.parse(sessionStorage.getItem("token"));
-		const id = JSON.parse(sessionStorage.getItem("id"));
 		const fetchUser = async () => {
-			const response = await fetch(
-				`http://localhost:8000/users/600/${id}`,
-				{
-					method: "GET",
-					headers: {
-						Authorization: `Bearer ${token}`,
-					},
-				}
-			);
-
-			const user = await response.json();
+			const user = await getUserService();
 			setUser(user);
 		};
 		fetchUser();
 	}, []);
+
+	const handleOrderSubmit = async (event) => {
+		event.preventDefault();
+		try {
+			const data = await createOrderService(cartList, total, user);
+			clearCart();
+			navigate("/order-summary", { state: { data: data, status: true } });
+		} catch (error) {
+			navigate("/order-summary", { state: { status: false } });
+		}
+	};
+
 	return (
 		<section>
 			<div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50"></div>
@@ -62,7 +66,10 @@ export const Checkout = ({ setCheckout }) => {
 								<i className="bi bi-credit-card mr-2"></i>CARD
 								PAYMENT
 							</h3>
-							<form className="space-y-6">
+							<form
+								onSubmit={handleOrderSubmit}
+								className="space-y-6"
+							>
 								<div>
 									<label
 										htmlFor="name"

@@ -5,6 +5,7 @@ import FilterBar from "./components/FilterBar";
 import { useEffect, useState } from "react";
 import { useTitle } from "../../hooks/useTitle";
 import { useFilter } from "../../context";
+import { getProductListService } from "../../service";
 
 const ProductsList = () => {
 	const { products, initialProductList } = useFilter();
@@ -19,10 +20,7 @@ const ProductsList = () => {
 	useEffect(() => {
 		const fetchProducts = async () => {
 			try {
-				const response = await fetch(
-					`http://localhost:8000/products?name_like=${searchTerm}`
-				);
-				const data = await response.json();
+				const data = await getProductListService(searchTerm);
 				initialProductList(data);
 				setLoading(false);
 			} catch (error) {

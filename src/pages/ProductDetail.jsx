@@ -4,6 +4,7 @@ import {Loader} from "../components";
 import { useParams } from "react-router-dom";
 import { useTitle } from "../hooks/useTitle";
 import { useCart } from "../context";
+import { getProductService } from "../service";
 
 const ProductDetail = () => {
     const { id } = useParams();
@@ -16,8 +17,7 @@ const ProductDetail = () => {
 	useTitle(product.name);
     useEffect(() => {
         const fetchProduct = async () => {
-            const response = await fetch(`http://localhost:8000/products/${id}`);
-            const data = await response.json();
+            const data = await getProductService(id);
             setProduct(data);
             setLoading(false);
         };
