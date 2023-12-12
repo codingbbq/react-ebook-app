@@ -2,6 +2,14 @@
 
 ![screenshot](react-ebook-app.png)
 
+## Features
+- Register / Login
+- Ebooks listing
+- Filter and Search
+- Add to Cart
+- Place order
+- Order history page
+
 ## Local Dev Setup
 - Create `.env` file with `REACT_APP_HOST=http://localhost:8000`, this is the API URI hosted using json-server and json-server-auth
 - `npm start` to start the dev server
