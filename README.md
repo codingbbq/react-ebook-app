@@ -1,13 +1,15 @@
 # React eBook Application
 
-Checkout working demo of [React eBook App](https://github.com/facebook/create-react-app).
+[!screenshot](react-ebook-app.png)
 
 ## Local Dev Setup
+- Create `.env` file with `REACT_APP_HOST=http://localhost:8000`, this is the API URI hosted using json-server and json-server-auth
 - `npm start` to start the dev server
 - `npm run server` to run the json-server and json-server-auth
 
 ## Notes
-- Project folder structure
+- How to create a modularized project structure with all the API's in services fold
 - Use of different hooks such as `useState`, `useEffect`, `useReducer`, `useContext`, etc
 - Custom hooks
 - React Router
+- Tailwind CSS

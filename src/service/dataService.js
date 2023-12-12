@@ -13,7 +13,7 @@ export const getUserService = async () => {
 		},
 	};
 	const response = await fetch(
-		`${process.env.REACT_API_HOST}/users/600/${browserData.id}`,
+		`${process.env.REACT_APP_HOST}/users/600/${browserData.id}`,
 		requestOptions
 	);
     if(!response.ok) {
@@ -57,7 +57,7 @@ export const createOrderService = async (cartList, total, user) => {
 		},
 	};
 
-	const response = await fetch(`${process.env.REACT_API_HOST}/660/orders`, {
+	const response = await fetch(`${process.env.REACT_APP_HOST}/660/orders`, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",

@@ -5,7 +5,7 @@ export const loginService = async (authDetail) => {
         body: JSON.stringify(authDetail)
     };
 
-    const response = await fetch(`${process.env.REACT_API_HOST}/login`, requestOptions);
+    const response = await fetch(`${process.env.REACT_APP_HOST}/login`, requestOptions);
     if(!response.ok) {
         throw new Error({ message : response.statusText, status: response.status });
     }
@@ -27,7 +27,7 @@ export const registerService = async (registerDetails) => {
         body: JSON.stringify(registerDetails)
     };
 
-    const response = await fetch(`${process.env.REACT_API_HOST}/register`, requestOptions);
+    const response = await fetch(`${process.env.REACT_APP_HOST}/register`, requestOptions);
     if(!response.ok) {
         throw new Error({ message : response.statusText, status: response.status });
     }
