@@ -1,6 +1,6 @@
 # React eBook Application
 
-[!screenshot](react-ebook-app.png)
+![screenshot](react-ebook-app.png)
 
 ## Local Dev Setup
 - Create `.env` file with `REACT_APP_HOST=http://localhost:8000`, this is the API URI hosted using json-server and json-server-auth
