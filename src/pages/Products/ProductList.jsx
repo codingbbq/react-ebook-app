@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useTitle } from "../../hooks/useTitle";
 import { useFilter } from "../../context";
 import { getProductListService } from "../../service";
+import { toast } from "react-toastify";
 
 const ProductsList = () => {
 	const { products, initialProductList } = useFilter();
@@ -24,7 +25,7 @@ const ProductsList = () => {
 				initialProductList(data);
 				setLoading(false);
 			} catch (error) {
-				console.error(error);
+				toast.error(error.message);
 			}
 		};
 		fetchProducts();

@@ -15,7 +15,7 @@ export const DashboardPage = () => {
         const data = await getUserOrdersService();
         setOrders(data);
       } catch(error){
-        toast.error(error.message, { closeButton: true, position: "bottom-center" });
+        toast.error(error.message);
       }      
     }
     fetchOrders();

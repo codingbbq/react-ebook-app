@@ -9,17 +9,21 @@ export const Register = () => {
 
     const handleRegister = async (event) => {
         event.preventDefault();
-        const registerDetails = {
-            name: event.target.name.value,
-            email: event.target.email.value,
-            password: event.target.password.value
-        };
-        
-		const data = await registerService(registerDetails);
-        if(data.accessToken) {
-			navigate("/products");
-		} else {
-			toast.error(data);
+        try {
+			const registerDetails = {
+				name: event.target.name.value,
+				email: event.target.email.value,
+				password: event.target.password.value
+			};
+			
+			const data = await registerService(registerDetails);
+			if(data.accessToken) {
+				navigate("/products");
+			} else {
+				toast.error(data);
+			}
+		} catch (error) {
+			toast.error(error.message);
 		}
     }
 

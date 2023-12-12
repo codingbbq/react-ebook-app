@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useCart } from "../../../context";
 import { useNavigate } from "react-router-dom";
 import { createOrderService, getUserService } from "../../../service";
+import { toast } from "react-toastify";
 
 export const Checkout = ({ setCheckout }) => {
 	const navigate = useNavigate();
@@ -11,8 +12,12 @@ export const Checkout = ({ setCheckout }) => {
 
 	useEffect(() => {
 		const fetchUser = async () => {
-			const user = await getUserService();
-			setUser(user);
+			try {
+				const user = await getUserService();
+				setUser(user);
+			} catch (error) {
+				toast.error(error.message);
+			}
 		};
 		fetchUser();
 	}, []);

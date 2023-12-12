@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { ProductCard } from "../../../components";
 import { Loader } from "../../../components";
 import { getFeaturedService } from "../../../service";
+import { toast } from "react-toastify";
 
 const FeaturedProducts = () => {
 	const [products, setProducts] = useState([]);
@@ -13,7 +14,7 @@ const FeaturedProducts = () => {
 				setProducts(data);
 				setLoading(false);
 			} catch (error) {
-				console.log(error);
+				toast.error(error.message);
 			}
 		};
 

@@ -1,22 +1,26 @@
 import { Link, useNavigate } from "react-router-dom";
 import { getUserService, logoutService } from "../../service";
 import { useCallback, useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 export const DropdownLoggedIn = ({ setDropdown }) => {
 	const [user, setUser] = useState({});
 	const navigate = useNavigate();
-	
+
 	const handleLogout = useCallback(() => {
 		logoutService();
 		setDropdown(false);
 		navigate("/");
 	}, [navigate, setDropdown]);
 
-
 	useEffect(() => {
 		const fetchUser = async () => {
-			const data = await getUserService();
-			data.email ? setUser(data) : handleLogout();
+			try {
+				const data = await getUserService();
+				data.email ? setUser(data) : handleLogout();
+			} catch (error) {
+				toast.error(error.message);
+			}
 		};
 		fetchUser();
 	}, [handleLogout]);

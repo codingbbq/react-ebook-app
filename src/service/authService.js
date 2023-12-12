@@ -5,8 +5,14 @@ export const loginService = async (authDetail) => {
         body: JSON.stringify(authDetail)
     };
 
-    const response = await fetch("http://localhost:8000/login", requestOptions);
+    const response = await fetch(`${process.env.REACT_API_HOST}/login`, requestOptions);
+    if(!response.ok) {
+        throw new Error({ message : response.statusText, status: response.status });
+    }
     const data = await response.json();
+    if(!response.ok) {
+        throw new Error({ message : response.statusText, status: response.status });
+    }
     if(data.accessToken) {
         sessionStorage.setItem("token", JSON.stringify(data.accessToken));
         sessionStorage.setItem("id", JSON.stringify(data.user.id));
@@ -21,7 +27,10 @@ export const registerService = async (registerDetails) => {
         body: JSON.stringify(registerDetails)
     };
 
-    const response = await fetch("http://localhost:8000/register", requestOptions);
+    const response = await fetch(`${process.env.REACT_API_HOST}/register`, requestOptions);
+    if(!response.ok) {
+        throw new Error({ message : response.statusText, status: response.status });
+    }
     const data = await response.json();
     if(data.accessToken) {
         sessionStorage.setItem("token", JSON.stringify(data.accessToken));

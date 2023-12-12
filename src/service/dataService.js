@@ -13,9 +13,12 @@ export const getUserService = async () => {
 		},
 	};
 	const response = await fetch(
-		`http://localhost:8000/users/600/${browserData.id}`,
+		`${process.env.REACT_API_HOST}/users/600/${browserData.id}`,
 		requestOptions
 	);
+    if(!response.ok) {
+        throw new Error({ message : response.statusText, status: response.status });
+    }
 	const user = await response.json();
 	return user;
 };
@@ -33,8 +36,8 @@ export const getUserOrdersService = async () => {
 		`${process.env.REACT_APP_HOST}/660/orders?user.id=${browserData.id}`,
 		requestOptions
 	);
-	if (!response.ok) {
-		throw { message: response.statusText, status: response.status }; //eslint-disable-line
+    if (!response.ok) {
+		throw new Error({ message: response.statusText, status: response.status });
 	}
 	const data = await response.json();
 	return data;
@@ -54,7 +57,7 @@ export const createOrderService = async (cartList, total, user) => {
 		},
 	};
 
-	const response = await fetch("http://localhost:8000/660/orders", {
+	const response = await fetch(`${process.env.REACT_API_HOST}/660/orders`, {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
@@ -62,7 +65,9 @@ export const createOrderService = async (cartList, total, user) => {
 		},
 		body: JSON.stringify(order),
 	});
-
+    if(!response.ok) {
+        throw new Error({ message : response.statusText, status: response.status });
+    }
 	const data = await response.json();
 	return data;
 };
